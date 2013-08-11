@@ -19,6 +19,10 @@
 		A6FDD87517B839720055A8AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FDD85D17B839720055A8AC /* UIKit.framework */; };
 		A6FDD87D17B839720055A8AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6FDD87B17B839720055A8AC /* InfoPlist.strings */; };
 		A6FDD87F17B839720055A8AC /* ExplorerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD87E17B839720055A8AC /* ExplorerTests.m */; };
+		A6FDD88B17B839E10055A8AC /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD88917B839E10055A8AC /* ContentViewController.m */; };
+		A6FDD88C17B839E10055A8AC /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6FDD88A17B839E10055A8AC /* ContentViewController.xib */; };
+		A6FDD89017B83B710055A8AC /* ExplorerPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FDD88E17B83B710055A8AC /* ExplorerPageViewController.m */; };
+		A6FDD89117B83B710055A8AC /* ExplorerPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6FDD88F17B83B710055A8AC /* ExplorerPageViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,12 @@
 		A6FDD87A17B839720055A8AC /* ExplorerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExplorerTests-Info.plist"; sourceTree = "<group>"; };
 		A6FDD87C17B839720055A8AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A6FDD87E17B839720055A8AC /* ExplorerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExplorerTests.m; sourceTree = "<group>"; };
+		A6FDD88817B839E10055A8AC /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
+		A6FDD88917B839E10055A8AC /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
+		A6FDD88A17B839E10055A8AC /* ContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
+		A6FDD88D17B83B710055A8AC /* ExplorerPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplorerPageViewController.h; sourceTree = "<group>"; };
+		A6FDD88E17B83B710055A8AC /* ExplorerPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplorerPageViewController.m; sourceTree = "<group>"; };
+		A6FDD88F17B83B710055A8AC /* ExplorerPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExplorerPageViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +119,12 @@
 			children = (
 				A6FDD86817B839720055A8AC /* AppDelegate.h */,
 				A6FDD86917B839720055A8AC /* AppDelegate.m */,
+				A6FDD88817B839E10055A8AC /* ContentViewController.h */,
+				A6FDD88917B839E10055A8AC /* ContentViewController.m */,
+				A6FDD88A17B839E10055A8AC /* ContentViewController.xib */,
+				A6FDD88D17B83B710055A8AC /* ExplorerPageViewController.h */,
+				A6FDD88E17B83B710055A8AC /* ExplorerPageViewController.m */,
+				A6FDD88F17B83B710055A8AC /* ExplorerPageViewController.xib */,
 				A6FDD86B17B839720055A8AC /* Images.xcassets */,
 				A6FDD86017B839720055A8AC /* Supporting Files */,
 			);
@@ -219,8 +235,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6FDD89117B83B710055A8AC /* ExplorerPageViewController.xib in Resources */,
 				A6FDD86417B839720055A8AC /* InfoPlist.strings in Resources */,
 				A6FDD86C17B839720055A8AC /* Images.xcassets in Resources */,
+				A6FDD88C17B839E10055A8AC /* ContentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,8 +257,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6FDD89017B83B710055A8AC /* ExplorerPageViewController.m in Sources */,
 				A6FDD86A17B839720055A8AC /* AppDelegate.m in Sources */,
 				A6FDD86617B839720055A8AC /* main.m in Sources */,
+				A6FDD88B17B839E10055A8AC /* ContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
