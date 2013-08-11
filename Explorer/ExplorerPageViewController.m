@@ -30,7 +30,7 @@
     
     // Initialize data to display
     self.screenIdentifierArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i< 10; i++) {
+    for (int i = 0; i < 10; i++) {
         [self.screenIdentifierArray addObject:[NSString stringWithFormat:@"This is screen %d", i]];
     }
     
@@ -69,7 +69,7 @@
         return nil;
     }
     
-    // Create ContentViewController with required object.
+    // Create ContentViewController with required data.
     ContentViewController *cVC = [[ContentViewController alloc] init];
     [cVC setDataObject:[self.screenIdentifierArray objectAtIndex:index]];
     return cVC;
@@ -82,20 +82,16 @@
 # pragma mark data source methods
 
 // Implement Before and After view controller methods to switch view controllers
-
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     // Get index of current view controller and return previous view controller
-    // cast viewController to ContentViewController to use indexOfViewController
     NSUInteger index = [self indexOfViewController:(ContentViewController *)viewController];
     if ( index == 0 || index == NSNotFound ) {
         return nil;
     }
     index--;
     
-    ContentViewController *cVC = [self viewControllerAtIndex:index];
-    return cVC;
+    return [self viewControllerAtIndex:index];
 }
-
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     // Get index of current view controller and reuturn next view controller
@@ -105,10 +101,8 @@
     }
     index++;
     
-    ContentViewController *cVC = [self viewControllerAtIndex:index];
-    return cVC;
+    return [self viewControllerAtIndex:index];
 }
-
 
 @end
 
