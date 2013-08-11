@@ -18,7 +18,7 @@
     
     ExplorerPageViewController *explorerPVC = [[ExplorerPageViewController alloc] init];
     
-    [self.window setRootViewController:explorerPVC];
+    self.window.rootViewController = explorerPVC;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
