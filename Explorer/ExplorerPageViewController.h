@@ -13,4 +13,7 @@
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 @property (nonatomic, strong) NSMutableArray *screenIdentifierArray;
 
+// Move to LXPImage
+@property (nonatomic, strong) NSMutableArray *imageArray;
+
 @end

@@ -8,6 +8,7 @@
 
 #import "ExplorerPageViewController.h"
 #import "ContentViewController.h"
+#import "LXPImage.h"
 
 @interface ExplorerPageViewController ()
 
@@ -28,10 +29,12 @@
 {
     [super viewDidLoad];
     
-    // Initialize data to display
+    // TODO: Move to LXPImage init
     self.screenIdentifierArray = [[NSMutableArray alloc] init];
+    self.imageArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < 10; i++) {
         [self.screenIdentifierArray addObject:[NSString stringWithFormat:@"This is screen %d", i]];
+        [self.imageArray addObject:[UIImage imageNamed:@"iphone5wp.jpg"]];
     }
     
     // Initialize UIPageViewController and define its style
@@ -71,12 +74,14 @@
     
     // Create ContentViewController with required data.
     ContentViewController *cVC = [[ContentViewController alloc] init];
-    [cVC setDataObject:[self.screenIdentifierArray objectAtIndex:index]];
+    [cVC setDataObjectString:[self.screenIdentifierArray objectAtIndex:index]];
+    [cVC setDataObjectImage:[self.imageArray objectAtIndex:index]];
+    
     return cVC;
 }
 
 - (NSUInteger)indexOfViewController:(ContentViewController *)viewController {
-    return [self.screenIdentifierArray indexOfObject:viewController.dataObject];
+    return [self.screenIdentifierArray indexOfObject:viewController.dataObjectString];
 }
 
 # pragma mark data source methods

@@ -11,7 +11,10 @@
 @interface ContentViewController : UIViewController
 
 @property (nonatomic, strong) IBOutlet UILabel *screenIdentifierString;
+@property (nonatomic, strong) IBOutlet UIImageView *imageToExplore;
 
-@property (nonatomic, strong) id dataObject;
+@property (nonatomic, strong) id dataObjectString;
+@property (nonatomic, strong) id dataObjectImage;
+
 
 @end

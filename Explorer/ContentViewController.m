@@ -26,7 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.screenIdentifierString setText:self.dataObject];
+    self.screenIdentifierString.text = self.dataObjectString;
+    self.imageToExplore.image =  self.dataObjectImage;
 }
 
 - (void)didReceiveMemoryWarning
