@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		A6A8067317B9DB8000D42677 /* LXPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A8067217B9DB8000D42677 /* LXPImage.m */; };
-		A6A8067517B9F08D00D42677 /* iphone5wp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6A8067417B9F08D00D42677 /* iphone5wp.jpg */; };
+		A6A8068517BA06B800D42677 /* wp1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6A8068017BA06B800D42677 /* wp1.jpg */; };
+		A6A8068617BA06B800D42677 /* wp0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6A8068117BA06B800D42677 /* wp0.jpg */; };
+		A6A8068717BA06B800D42677 /* wp2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6A8068217BA06B800D42677 /* wp2.jpg */; };
+		A6A8068817BA06B800D42677 /* wp3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6A8068317BA06B800D42677 /* wp3.jpg */; };
+		A6A8068917BA06B800D42677 /* wp4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6A8068417BA06B800D42677 /* wp4.jpg */; };
 		A6FDD85A17B839720055A8AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FDD85917B839720055A8AC /* Foundation.framework */; };
 		A6FDD85C17B839720055A8AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FDD85B17B839720055A8AC /* CoreGraphics.framework */; };
 		A6FDD85E17B839720055A8AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FDD85D17B839720055A8AC /* UIKit.framework */; };
@@ -40,7 +44,11 @@
 /* Begin PBXFileReference section */
 		A6A8067117B9DB8000D42677 /* LXPImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPImage.h; sourceTree = "<group>"; };
 		A6A8067217B9DB8000D42677 /* LXPImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPImage.m; sourceTree = "<group>"; };
-		A6A8067417B9F08D00D42677 /* iphone5wp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iphone5wp.jpg; sourceTree = "<group>"; };
+		A6A8068017BA06B800D42677 /* wp1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wp1.jpg; sourceTree = "<group>"; };
+		A6A8068117BA06B800D42677 /* wp0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wp0.jpg; sourceTree = "<group>"; };
+		A6A8068217BA06B800D42677 /* wp2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wp2.jpg; sourceTree = "<group>"; };
+		A6A8068317BA06B800D42677 /* wp3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wp3.jpg; sourceTree = "<group>"; };
+		A6A8068417BA06B800D42677 /* wp4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wp4.jpg; sourceTree = "<group>"; };
 		A6FDD85617B839720055A8AC /* Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Explorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6FDD85917B839720055A8AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6FDD85B17B839720055A8AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,7 +130,11 @@
 		A6FDD85F17B839720055A8AC /* Explorer */ = {
 			isa = PBXGroup;
 			children = (
-				A6A8067417B9F08D00D42677 /* iphone5wp.jpg */,
+				A6A8068017BA06B800D42677 /* wp1.jpg */,
+				A6A8068117BA06B800D42677 /* wp0.jpg */,
+				A6A8068217BA06B800D42677 /* wp2.jpg */,
+				A6A8068317BA06B800D42677 /* wp3.jpg */,
+				A6A8068417BA06B800D42677 /* wp4.jpg */,
 				A6FDD86817B839720055A8AC /* AppDelegate.h */,
 				A6FDD86917B839720055A8AC /* AppDelegate.m */,
 				A6FDD88817B839E10055A8AC /* ContentViewController.h */,
@@ -243,11 +255,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6A8068817BA06B800D42677 /* wp3.jpg in Resources */,
+				A6A8068717BA06B800D42677 /* wp2.jpg in Resources */,
 				A6FDD89117B83B710055A8AC /* ExplorerPageViewController.xib in Resources */,
 				A6FDD86417B839720055A8AC /* InfoPlist.strings in Resources */,
+				A6A8068517BA06B800D42677 /* wp1.jpg in Resources */,
+				A6A8068617BA06B800D42677 /* wp0.jpg in Resources */,
+				A6A8068917BA06B800D42677 /* wp4.jpg in Resources */,
 				A6FDD86C17B839720055A8AC /* Images.xcassets in Resources */,
 				A6FDD88C17B839E10055A8AC /* ContentViewController.xib in Resources */,
-				A6A8067517B9F08D00D42677 /* iphone5wp.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

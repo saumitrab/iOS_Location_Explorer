@@ -8,17 +8,26 @@
 
 #import "LXPImage.h"
 
+@interface LXPImage ()
+
+@end
+
 @implementation LXPImage
 
-- (void)initImageCache {
-    self.imageCache = [[NSMutableArray alloc]init];
+// TODO: Prototype code, implement a image cache.
++ (UIImage *)imageAtIndex:(NSUInteger)index {
+    
+    /*
+    static NSMutableArray *imageCache = nil;
+    if ( imageCache == nil ) {
+        imageCache = [[NSMutableArray alloc] init];
+    }
+    */
+    
+    NSString *imageName = [[NSString alloc] initWithFormat:@"wp%d.jpg",index];
+    UIImage *myImage = [UIImage imageNamed:imageName];
+    return myImage;
 }
 
-- (void)addImagesToCache {
-    for ( int i = 0; i < 5; i++ ) {
-        UIImageView *myImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iphone5wp.jpg"]];
-        [self.imageCache addObject:myImage];
-    }
-}
 
 @end

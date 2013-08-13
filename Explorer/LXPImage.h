@@ -10,10 +10,6 @@
 
 @interface LXPImage : NSObject
 
-@property (nonatomic, strong) NSMutableArray *imageArray;
-@property (nonatomic, strong) NSMutableArray *imageCache;
-
-- (void)addImagesToCache;
-- (UIImageView *)imageAtIndex:(NSUInteger)index;
++ (UIImage *)imageAtIndex:(NSUInteger)index;
 
 @end

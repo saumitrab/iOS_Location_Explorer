@@ -29,12 +29,9 @@
 {
     [super viewDidLoad];
     
-    // TODO: Move to LXPImage init
     self.screenIdentifierArray = [[NSMutableArray alloc] init];
-    self.imageArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 5; i++) {
         [self.screenIdentifierArray addObject:[NSString stringWithFormat:@"This is screen %d", i]];
-        [self.imageArray addObject:[UIImage imageNamed:@"iphone5wp.jpg"]];
     }
     
     // Initialize UIPageViewController and define its style
@@ -75,8 +72,7 @@
     // Create ContentViewController with required data.
     ContentViewController *cVC = [[ContentViewController alloc] init];
     [cVC setDataObjectString:[self.screenIdentifierArray objectAtIndex:index]];
-    [cVC setDataObjectImage:[self.imageArray objectAtIndex:index]];
-    
+    [cVC setDataObjectImage:[LXPImage imageAtIndex:index]];
     return cVC;
 }
 
