@@ -14,7 +14,7 @@
 
 @implementation LXPImage
 
-// TODO: Prototype code, implement a image cache.
+// TODO: Prototype code, implement an image cache.
 + (UIImage *)imageAtIndex:(NSUInteger)index {
     
     /*
