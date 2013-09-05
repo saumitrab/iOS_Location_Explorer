@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LXPImage : NSObject
+@interface LXPImage : NSObject <NSXMLParserDelegate>
 
 + (UIImage *)imageAtIndex:(NSUInteger)index;
 
