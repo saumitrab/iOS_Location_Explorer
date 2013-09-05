@@ -28,6 +28,8 @@
     [super viewDidLoad];
     self.screenIdentifierString.text = self.dataObjectString;
     self.imageToExplore.image =  self.dataObjectImage;
+    [self.mapView addAnnotation:self.dataObjectMapPin];
+    [self.mapView showsUserLocation];
 }
 
 - (void)didReceiveMemoryWarning

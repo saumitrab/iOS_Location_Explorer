@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface ContentViewController : UIViewController
+@interface ContentViewController : UIViewController <MKMapViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UILabel *screenIdentifierString;
 @property (nonatomic, strong) IBOutlet UIImageView *imageToExplore;
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
 
 @property (nonatomic, strong) id dataObjectString;
 @property (nonatomic, strong) id dataObjectImage;
-
+@property (nonatomic, strong) id dataObjectMapPin;
 
 @end

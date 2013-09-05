@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface ExplorerPageViewController : UIViewController <UIPageViewControllerDataSource, NSXMLParserDelegate>
+@interface ExplorerPageViewController : UIViewController <UIPageViewControllerDataSource, NSXMLParserDelegate, MKMapViewDelegate>
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 @property (nonatomic, strong) NSMutableArray *screenIdentifierArray;
