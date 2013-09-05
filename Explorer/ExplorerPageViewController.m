@@ -9,6 +9,11 @@
 #import "ExplorerPageViewController.h"
 #import "ContentViewController.h"
 #import "LXPImage.h"
+#import "UIImageView+AFNetworking.h"
+#import "AFNetworking.h"
+#import "AFImageRequestOperation.h"
+
+
 
 @interface ExplorerPageViewController ()
 
@@ -72,7 +77,7 @@
     // Create ContentViewController with required data.
     ContentViewController *cVC = [[ContentViewController alloc] init];
     [cVC setDataObjectString:[self.screenIdentifierArray objectAtIndex:index]];
-    [cVC setDataObjectImage:[LXPImage imageAtIndex:index]];
+    [cVC setDataObjectImage:[self imageAtIndex:index]];
     return cVC;
 }
 
@@ -103,6 +108,77 @@
     index++;
     
     return [self viewControllerAtIndex:index];
+}
+
+# pragma mark photo apis
+
+- (UIImage *)imageAtIndex:(NSUInteger)index {
+    
+    if ( self.imageCache == nil ) {
+        self.imageCache = [[NSMutableArray alloc] init];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=926c358424da93e42e672382bd4e6463&lat=37&lon=-122&format=rest&auth_token=72157635381922773-087b24f8579db868&api_sig=e7e497d17836b5d2c18e5eb552c65b49"]];
+        AFXMLRequestOperation *operation = [AFXMLRequestOperation XMLParserRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser) {
+            XMLParser.delegate = self;
+            [XMLParser parse];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, NSXMLParser *XMLParser) {
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving data"
+                                                         message:[NSString stringWithFormat:@"%@",error]
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
+            [av show];
+        }];
+        
+        [operation start];
+        
+    }
+    
+    NSString *imageName;
+    __block UIImage *myImage;
+    if ( [self.imageCache count] > 0 ) {
+        //ima geName = [[NSString alloc] initWith initWithFormat:@"%@", [self.imageCache objectAtIndex:index]];
+        NSString *photourl = [NSString stringWithFormat:@"%@", [self.imageCache objectAtIndex:index]];
+        
+        /*
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:photourl]];
+        AFImageRequestOperation *operation;
+        
+        operation = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:nil
+                                             success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                 completionBlock(image);
+                                                 myImage = image;
+                                             }
+                                             failure:nil];
+        [operation start];
+        
+        */
+        
+        myImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photourl]]];
+
+    } else {
+        imageName = [[NSString alloc] initWithFormat:@"wp3.jpg"];
+        myImage = [UIImage imageNamed:imageName];
+    }
+    
+    return myImage;
+}
+
+
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+{
+    if ([elementName isEqualToString:@"photo"])
+    {
+        // http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+        //if ( self.imageCache ) {
+            [self.imageCache addObject:[NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg",
+                                        [attributeDict valueForKey:@"farm"],
+                                        [attributeDict valueForKey:@"server"],
+                                        [attributeDict valueForKey:@"id"],
+                                        [attributeDict valueForKey:@"secret"]]];
+        //}
+        //NSLog(@"id: %@,  owner: %@", [attributeDict valueForKey:@"id"], [attributeDict valueForKey:@"owner"]);
+    }
+    
 }
 
 @end

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExplorerPageViewController : UIViewController <UIPageViewControllerDataSource>
+@interface ExplorerPageViewController : UIViewController <UIPageViewControllerDataSource, NSXMLParserDelegate>
 
 @property (nonatomic, strong) UIPageViewController *pageViewController;
 @property (nonatomic, strong) NSMutableArray *screenIdentifierArray;
+
+@property (nonatomic, strong) NSMutableArray *imageCache;
 
 @end
