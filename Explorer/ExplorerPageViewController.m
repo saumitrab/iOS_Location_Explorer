@@ -78,19 +78,25 @@
     [cVC setDataObjectString:[self.screenIdentifierArray objectAtIndex:index]];
     [cVC setDataObjectImage:[self imageAtIndex:index]];
     
-    ///////
-    // Create your coordinate
-    CLLocationCoordinate2D myCoordinate = {37, -122};
-    //Create your annotation
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-    // Set your annotation to point at your coordinate
-    point.coordinate = myCoordinate;
-    //If you want to clear other pins/annotations this is how to do it
-    //for (id annotation in self.mapView.annotations) {
-    //    [self.mapView removeAnnotation:annotation];
-    //}
-    //Drop pin on map
-    [cVC setDataObjectMapPin:point];
+    if ( [self.imageCache count] > 0 ) {
+        LXPImage *imageObject = [self.imageCache objectAtIndex:index];
+        ///////
+        // Create your coordinate
+        CLLocationCoordinate2D myCoordinate;
+        myCoordinate.latitude = imageObject.imageLat;
+        myCoordinate.longitude = imageObject.imageLon;
+        
+        //Create your annotation
+        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+        // Set your annotation to point at your coordinate
+        point.coordinate = myCoordinate;
+        //If you want to clear other pins/annotations this is how to do it
+        //for (id annotation in self.mapView.annotations) {
+        //    [self.mapView removeAnnotation:annotation];
+        //}
+        //Drop pin on map
+        [cVC setDataObjectMapPin:point];
+    }
     return cVC;
 }
 
@@ -130,7 +136,7 @@
     
     if ( self.imageCache == nil ) {
         self.imageCache = [[NSMutableArray alloc] init];
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=926c358424da93e42e672382bd4e6463&min_upload_date=1357364469&lat=37&lon=-122&format=rest&auth_token=72157635381922773-087b24f8579db868&api_sig=26c375a700fd250063ee1e6d0699cc09"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=799b2f943c3d1e7a42ca6911ef046e0c&tags=night%2C+%09+city%2C+%09+architecture%2C+%09+street%2C+%09+building%2C++urban%2C+%09+church%2C+%09+longexposure%2C+%09+moon%2C+%09+cathedral&sort=interestingness-desc&safe_search=safe&has_geo=1&geo_context=2&lat=37.788268&lon=-122.407332&radius=20&radius_units=mi&extras=geo&format=rest&auth_token=72157635406074918-03fbcb6accff5a1d&api_sig=d1c85c801b964658fb4ca0f33bd90247"]];
         AFXMLRequestOperation *operation = [AFXMLRequestOperation XMLParserRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser) {
             XMLParser.delegate = self;
             [XMLParser parse];
@@ -149,7 +155,8 @@
     __block UIImage *myImage;
     if ( [self.imageCache count] > 0 ) {
         //ima geName = [[NSString alloc] initWith initWithFormat:@"%@", [self.imageCache objectAtIndex:index]];
-        NSString *photourl = [NSString stringWithFormat:@"%@", [self.imageCache objectAtIndex:index]];
+        LXPImage *imageObject = [self.imageCache objectAtIndex:index];
+        NSString *photourl = [NSString stringWithFormat:@"%@", imageObject.imageURL];
         
         /*
          NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:photourl]];
@@ -164,7 +171,7 @@
          [operation start];
          */
         
-         myImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photourl]]];
+        myImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photourl]]];
     } else {
         imageName = [[NSString alloc] initWithFormat:@"wp3.jpg"];
         myImage = [UIImage imageNamed:imageName];
@@ -179,11 +186,18 @@
     if ([elementName isEqualToString:@"photo"])
     {
         // http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-        [self.imageCache addObject:[NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg",
-                                    [attributeDict valueForKey:@"farm"],
-                                    [attributeDict valueForKey:@"server"],
-                                    [attributeDict valueForKey:@"id"],
-                                    [attributeDict valueForKey:@"secret"]]];
+        NSString *imageURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg",
+                              [attributeDict valueForKey:@"farm"],
+                              [attributeDict valueForKey:@"server"],
+                              [attributeDict valueForKey:@"id"],
+                              [attributeDict valueForKey:@"secret"]];
+        
+        float imageLat = [[attributeDict valueForKey:@"latitude"] doubleValue];
+        float imageLon = [[attributeDict valueForKey:@"longitude"] doubleValue];
+        
+        LXPImage *imageObject = [[LXPImage alloc] initWithImageURL:imageURL imageLat:imageLat imageLon:imageLon];
+        
+        [self.imageCache addObject:imageObject];
     }
     
 }
