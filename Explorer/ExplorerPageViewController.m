@@ -12,7 +12,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
 #import "AFImageRequestOperation.h"
-#import "User.h"
+//#import "User.h"
 
 
 @interface ExplorerPageViewController ()

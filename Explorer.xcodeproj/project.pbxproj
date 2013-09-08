@@ -23,7 +23,6 @@
 		A6A8068717BA06B800D42677 /* wp2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6A8068217BA06B800D42677 /* wp2.jpg */; };
 		A6A8068817BA06B800D42677 /* wp3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6A8068317BA06B800D42677 /* wp3.jpg */; };
 		A6A8068917BA06B800D42677 /* wp4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6A8068417BA06B800D42677 /* wp4.jpg */; };
-		A6D8123317DBD4EF005E658A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D8123217DBD4EF005E658A /* User.m */; };
 		A6D8127D17DBE193005E658A /* LXPImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D8127C17DBE193005E658A /* LXPImageCache.m */; };
 		A6FDD85A17B839720055A8AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FDD85917B839720055A8AC /* Foundation.framework */; };
 		A6FDD85C17B839720055A8AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FDD85B17B839720055A8AC /* CoreGraphics.framework */; };
@@ -81,8 +80,6 @@
 		A6A8068217BA06B800D42677 /* wp2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wp2.jpg; sourceTree = "<group>"; };
 		A6A8068317BA06B800D42677 /* wp3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wp3.jpg; sourceTree = "<group>"; };
 		A6A8068417BA06B800D42677 /* wp4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wp4.jpg; sourceTree = "<group>"; };
-		A6D8123117DBD4EF005E658A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		A6D8123217DBD4EF005E658A /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		A6D8127B17DBE193005E658A /* LXPImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXPImageCache.h; sourceTree = "<group>"; };
 		A6D8127C17DBE193005E658A /* LXPImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXPImageCache.m; sourceTree = "<group>"; };
 		A6FDD85617B839720055A8AC /* Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Explorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,8 +206,6 @@
 				A6FDD88F17B83B710055A8AC /* ExplorerPageViewController.xib */,
 				A6A8067117B9DB8000D42677 /* LXPImage.h */,
 				A6A8067217B9DB8000D42677 /* LXPImage.m */,
-				A6D8123117DBD4EF005E658A /* User.h */,
-				A6D8123217DBD4EF005E658A /* User.m */,
 				A6D8127B17DBE193005E658A /* LXPImageCache.h */,
 				A6D8127C17DBE193005E658A /* LXPImageCache.m */,
 				A6FDD86B17B839720055A8AC /* Images.xcassets */,
@@ -357,7 +352,6 @@
 				A608871817D6B65C006FD7CD /* AFXMLRequestOperation.m in Sources */,
 				A6FDD86617B839720055A8AC /* main.m in Sources */,
 				A6D8127D17DBE193005E658A /* LXPImageCache.m in Sources */,
-				A6D8123317DBD4EF005E658A /* User.m in Sources */,
 				A608871917D6B65C006FD7CD /* UIImageView+AFNetworking.m in Sources */,
 				A608871717D6B65C006FD7CD /* AFURLConnectionOperation.m in Sources */,
 				A608871517D6B65C006FD7CD /* AFNetworkActivityIndicatorManager.m in Sources */,

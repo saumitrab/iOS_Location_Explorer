@@ -16,7 +16,8 @@
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic) float imageLat;
 @property (nonatomic) float imageLon;
+@property (nonatomic, strong) NSString *imageTitle;
 
-- (id)initWithImageURL:(NSString *)imageURL imageLat:(float)imageLat imageLon:(float)imageLon;
+- (id)initWithImageURL:(NSString *)imageURL imageLat:(float)imageLat imageLon:(float)imageLon imageTitle:(NSString *)imageTitle;
 
 @end

@@ -18,7 +18,7 @@
 @implementation LXPImage
 
 
-- (id)initWithImageURL:(NSString *)imageURL imageLat:(float)imageLat imageLon:(float)imageLon {
+- (id)initWithImageURL:(NSString *)imageURL imageLat:(float)imageLat imageLon:(float)imageLon imageTitle:(NSString *)imageTitle{
     
     self = [super init];
     
@@ -26,6 +26,7 @@
         self.imageURL = imageURL;
         self.imageLat = imageLat;
         self.imageLon = imageLon;
+        self.imageTitle = imageTitle;
      }
     
     return self;

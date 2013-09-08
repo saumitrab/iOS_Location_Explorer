@@ -11,7 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
 #import "AFImageRequestOperation.h"
-#include "User.h"
+//#include "User.h"
 
 #include "LXPImageCache.h"
 
@@ -72,11 +72,11 @@
         
         // Get user location in center
         MKMapPoint annotationPoint = MKMapPointForCoordinate(self.mapView.userLocation.coordinate);
-        zoomRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.2, 0.2);
+        zoomRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.5, 0.5);
         
         // Get photo location in center
         MKMapPoint photoPoint = MKMapPointForCoordinate(myCoordinate);
-        MKMapRect pointRect = MKMapRectMake(photoPoint.x, photoPoint.y, 0.2, 0.2);
+        MKMapRect pointRect = MKMapRectMake(photoPoint.x, photoPoint.y, 0.5, 0.5);
         
         // Union two rectagles
         zoomRect = MKMapRectUnion(zoomRect, pointRect);
@@ -84,6 +84,9 @@
         [self.mapView setVisibleMapRect:zoomRect animated:YES];
     }
 
+    UITapGestureRecognizer* tapRec = [[UITapGestureRecognizer alloc]
+                                      initWithTarget:self action:@selector(didTapMap)];
+    [self.mapView addGestureRecognizer:tapRec];
     
     //self.mapView.showsUserLocation = YES;
 }
@@ -92,6 +95,35 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)didTapMap {
+    NSLog(@"TapMap");
+    //[self.mapView]
+    
+    Class mapItemClass = [MKMapItem class];
+    if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)])
+    {
+        
+        // Get current image stats
+        LXPImage *imageObject = [self.mainImageCache objectAtIndex:[self.dataObjectImageIndex integerValue]];
+        // Create an MKMapItem to pass to the Maps app
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(imageObject.imageLat, imageObject.imageLon);
+        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+        MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+        [mapItem setName:imageObject.imageTitle];
+        
+        // Set the directions mode to "Walking"
+        // Can use MKLaunchOptionsDirectionsModeDriving instead
+        NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking};
+        // Get the "Current User Location" MKMapItem
+        MKMapItem *currentLocationMapItem = [MKMapItem mapItemForCurrentLocation];
+        // Pass the current location and destination map items to the Maps app
+        // Set the direction mode in the launchOptions dictionary
+        [MKMapItem openMapsWithItems:@[currentLocationMapItem, mapItem]
+                       launchOptions:launchOptions];
+    }
+    
 }
 
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
@@ -112,8 +144,9 @@
         
         float imageLat = [[attributeDict valueForKey:@"latitude"] doubleValue];
         float imageLon = [[attributeDict valueForKey:@"longitude"] doubleValue];
+        NSString *imageTitle = [attributeDict valueForKey:@"title"];
         
-        LXPImage *imageObject = [[LXPImage alloc] initWithImageURL:imageURL imageLat:imageLat imageLon:imageLon];
+        LXPImage *imageObject = [[LXPImage alloc] initWithImageURL:imageURL imageLat:imageLat imageLon:imageLon imageTitle:imageTitle];
         
         [self.mainImageCache addObject:imageObject];
     }
@@ -152,7 +185,7 @@
         NSString *userLat = [NSString stringWithFormat:@"%f", self.mapView.userLocation.location.coordinate.latitude];
         NSString *userLon = [NSString stringWithFormat:@"%f", self.mapView.userLocation.location.coordinate.longitude];
         
-        NSString *flickrQueryString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=flowers%%2Cgarden%%2Clake%%2Clandscape%%2Cinstagramapp%%2Cnature%%2Cwater%%2Ctravel%%2Csea%%2Cpark&lat=%@&lon=%@&radius=20&radius_units=mi&extras=geo&format=rest", apiKey, userLat, userLon];
+        NSString *flickrQueryString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=flowers%%2Cgarden%%2Clake%%2Clandscape%%2Cinstagramapp%%2Cnature%%2Cwater%%2Ctravel%%2Csea%%2Cpark&safe_search=2&geo_context=2&lat=%@&lon=%@&radius=20&radius_units=mi&extras=geo&format=rest", apiKey, userLat, userLon];
         
         NSLog(@"flickrQueryStirng = %@", flickrQueryString);
         
