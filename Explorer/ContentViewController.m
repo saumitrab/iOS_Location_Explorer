@@ -67,7 +67,23 @@
         //}
         //Drop pin on map
         [self.mapView addAnnotation:point];
+        
+        MKMapRect zoomRect = MKMapRectNull;
+        
+        // Get user location in center
+        MKMapPoint annotationPoint = MKMapPointForCoordinate(self.mapView.userLocation.coordinate);
+        zoomRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.2, 0.2);
+        
+        // Get photo location in center
+        MKMapPoint photoPoint = MKMapPointForCoordinate(myCoordinate);
+        MKMapRect pointRect = MKMapRectMake(photoPoint.x, photoPoint.y, 0.2, 0.2);
+        
+        // Union two rectagles
+        zoomRect = MKMapRectUnion(zoomRect, pointRect);
+        
+        [self.mapView setVisibleMapRect:zoomRect animated:YES];
     }
+
     
     //self.mapView.showsUserLocation = YES;
 }
@@ -110,22 +126,8 @@
     NSString *imageName;
     __block UIImage *myImage;
     if ( [self.mainImageCache count] > 0 ) {
-        //ima geName = [[NSString alloc] initWith initWithFormat:@"%@", [self.imageCache objectAtIndex:index]];
         LXPImage *imageObject = [self.mainImageCache objectAtIndex:index];
         NSString *photourl = [NSString stringWithFormat:@"%@", imageObject.imageURL];
-        
-        /*
-         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:photourl]];
-         AFImageRequestOperation *operation;
-         
-         operation = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:nil
-         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-         completionBlock(image);
-         myImage = image;
-         }
-         failure:nil];
-         [operation start];
-         */
         myImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photourl]]];
     } else {
         imageName = [[NSString alloc] initWithFormat:@"wp3.jpg"];
@@ -169,6 +171,8 @@
         
         [operation start];
     }
+    
+    self.mapView.centerCoordinate = self.mapView.userLocation.location.coordinate;
 }
 
 @end
