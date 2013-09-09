@@ -48,6 +48,7 @@
             [self.activityView startAnimating];
             
             [self.view addSubview:self.activityView];
+            self.mapView.hidden = YES;
         }
     }
 
@@ -99,9 +100,9 @@
                                       initWithTarget:self action:@selector(didTapMap)];
     [self.mapView addGestureRecognizer:tapRec];
     
-    UITapGestureRecognizer* tapRecImage = [[UITapGestureRecognizer alloc]
-                                      initWithTarget:self action:@selector(didTapImage)];
-    [self.imageToExplore addGestureRecognizer:tapRecImage];
+    UILongPressGestureRecognizer* longPressRec = [[UILongPressGestureRecognizer alloc]
+                                      initWithTarget:self action:@selector(didLongPressMap)];
+    [self.mapView addGestureRecognizer:longPressRec];
     
     //self.mapView.showsUserLocation = YES;
 }
@@ -112,20 +113,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)didTapImage {
-    
-    if ( self.mapView.hidden ) {
-        self.mapView.hidden = NO;
-    } else {
-        self.mapView.hidden = YES;
-    }
-    
-}
-
-- (void)didTapMap {
-    NSLog(@"TapMap");
-    //[self.mapView]
-    
+- (void)didLongPressMap {
+  
     Class mapItemClass = [MKMapItem class];
     if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)])
     {
@@ -148,7 +137,13 @@
         [MKMapItem openMapsWithItems:@[currentLocationMapItem, mapItem]
                        launchOptions:launchOptions];
     }
+}
+
+- (void)didTapMap {
+    NSLog(@"TapMap");
+    //[self.mapView]
     
+    self.mapView.hidden = YES;
 }
 
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
