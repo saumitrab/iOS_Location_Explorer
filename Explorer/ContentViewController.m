@@ -17,6 +17,8 @@
 
 @interface ContentViewController ()
 
+@property UIActivityIndicatorView *activityView;
+
 @end
 
 //static NSMutableArray *_imageCache;
@@ -38,6 +40,15 @@
     
     if ( self.mainImageCache == nil ) {
         self.mainImageCache = [LXPImageCache getImageCache];
+        if ( self.mainImageCache == nil ) {
+            self.activityView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            
+            self.activityView.center=self.view.center;
+            
+            [self.activityView startAnimating];
+            
+            [self.view addSubview:self.activityView];
+        }
     }
 
     self.mapView.showsUserLocation = YES;
@@ -88,6 +99,10 @@
                                       initWithTarget:self action:@selector(didTapMap)];
     [self.mapView addGestureRecognizer:tapRec];
     
+    UITapGestureRecognizer* tapRecImage = [[UITapGestureRecognizer alloc]
+                                      initWithTarget:self action:@selector(didTapImage)];
+    [self.imageToExplore addGestureRecognizer:tapRecImage];
+    
     //self.mapView.showsUserLocation = YES;
 }
 
@@ -97,7 +112,17 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)didTapMap {
+- (void)didTapImage {
+    
+    if ( self.mapView.hidden ) {
+        self.mapView.hidden = NO;
+    } else {
+        self.mapView.hidden = YES;
+    }
+    
+}
+
+- (void)didTapMap {
     NSLog(@"TapMap");
     //[self.mapView]
     
@@ -151,6 +176,7 @@
         [self.mainImageCache addObject:imageObject];
     }
     
+    [self.activityView stopAnimating];
     NSLog(@"self.mainImageCache count = %d ", [self.mainImageCache count]);
 }
 
@@ -163,7 +189,7 @@
         NSString *photourl = [NSString stringWithFormat:@"%@", imageObject.imageURL];
         myImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photourl]]];
     } else {
-        imageName = [[NSString alloc] initWithFormat:@"wp3.jpg"];
+        imageName = [[NSString alloc] initWithFormat:@"exp2.jpg"];
         myImage = [UIImage imageNamed:imageName];
     }
     
@@ -185,7 +211,7 @@
         NSString *userLat = [NSString stringWithFormat:@"%f", self.mapView.userLocation.location.coordinate.latitude];
         NSString *userLon = [NSString stringWithFormat:@"%f", self.mapView.userLocation.location.coordinate.longitude];
         
-        NSString *flickrQueryString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=flowers%%2Cgarden%%2Clake%%2Clandscape%%2Cinstagramapp%%2Cnature%%2Cwater%%2Ctravel%%2Csea%%2Cpark&safe_search=2&geo_context=2&lat=%@&lon=%@&radius=20&radius_units=mi&extras=geo&format=rest", apiKey, userLat, userLon];
+        NSString *flickrQueryString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=flowers%%2Cgarden%%2Clake%%2Clandscape%%2Cinstagramapp%%2Cnature%%2C-fire%%2C-parade%%2Ctravel%%2Csea%%2Cpark&safe_search=2&geo_context=2&lat=%@&lon=%@&radius=20&radius_units=mi&extras=geo&format=rest", apiKey, userLat, userLon];
         
         NSLog(@"flickrQueryStirng = %@", flickrQueryString);
         
